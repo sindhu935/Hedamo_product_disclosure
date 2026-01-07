@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEDAMO - Product Disclosure System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header with clear hierarchy -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-shield-alt"></i> HEDAMO</h1>
+                <p class="subtitle">Product Disclosure System</p>
+                <div class="header-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="totalProducts">0</span>
+                        <span class="stat-label">Products</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="publishedCount">0</span>
+                        <span class="stat-label">Published</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main content area -->
+        <main>
+            <!-- List View -->
+            <section class="product-list-view" id="listView">
+                <!-- Cognitive Load Optimized Controls -->
+                <div class="controls-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-filter"></i> Filter & Search</h2>
+                        <span class="info-badge" id="resultsCount">0 results</span>
+                    </div>
+                    
+                    <!-- Quick Search -->
+                    <div class="search-chunk">
+                        <div class="input-group">
+                            <i class="fas fa-search"></i>
+                            <input type="text" 
+                                   class="search-input" 
+                                   id="searchInput"
+                                   placeholder="Search by product name, producer, or category..."
+                                   aria-label="Search products">
+                        </div>
+                        <button class="clear-btn" id="clearSearch">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+
+                    <!-- Status Filter with visual cues -->
+                    <div class="filters-chunk">
+                        <h3 class="filter-label"><i class="fas fa-tags"></i> Status Filter</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-status="all">
+                                <i class="fas fa-layer-group"></i> All
+                                <span class="filter-count" id="count-all">0</span>
+                            </button>
+                            <button class="filter-btn" data-status="published">
+                                <i class="fas fa-check-circle"></i> Published
+                                <span class="filter-count" id="count-published">0</span>
+                            </button>
+                            <button class="filter-btn" data-status="submitted">
+                                <i class="fas fa-paper-plane"></i> Submitted
+                                <span class="filter-count" id="count-submitted">0</span>
+                            </button>
+                            <button class="filter-btn" data-status="draft">
+                                <i class="fas fa-edit"></i> Draft
+                                <span class="filter-count" id="count-draft">0</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Category & Sort Controls -->
+                    <div class="controls-grid">
+                        <div class="control-group">
+                            <label for="categoryFilter" class="control-label">
+                                <i class="fas fa-folder"></i> Category
+                            </label>
+                            <select id="categoryFilter" class="control-select">
+                                <option value="all">All Categories</option>
+                                <option value="Food">Food & Nutrition</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Materials">Sustainable Materials</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="sortSelect" class="control-label">
+                                <i class="fas fa-sort"></i> Sort By
+                            </label>
+                            <select id="sortSelect" class="control-select">
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                                <option value="date-desc">Recently Updated</option>
+                                <option value="status">Status</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Grid - Scanning Optimized -->
+                <div class="products-grid-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-boxes"></i> Products</h2>
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="grid">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button class="view-btn" data-view="list">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div class="loading-state" id="loadingState">
+                        <div class="loading-spinner"></div>
+                        <p>Loading products...</p>
+                    </div>
+
+                    <!-- Products Container -->
+                    <div class="products-container" id="productsContainer">
+                        <!-- Products will be dynamically loaded here -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <h3>No products found</h3>
+                        <p>Try adjusting your filters or search terms</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detail View (Hidden by default) -->
+            <section class="product-detail-view" id="detailView" style="display: none;">
+                <!-- Detail content will be dynamically loaded -->
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>HEDAMO Product Disclosure System • Data last updated: <span id="lastUpdated">Today</span></p>
+            <p class="disclaimer">This system displays producer-declared information and does not constitute certification or verification.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
